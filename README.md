@@ -49,8 +49,9 @@ run installer script
 
 `chmod +x install_local.sh`
 
-`./install_local <number of web servers running>`
+`./install_local <number of web servers running> <passkey>`
 
+passkey must be 5 or more characters
 
 ![alt text](https://github.com/SabrinaSimao/Cloud/blob/master/img/coffee.png "Go drink some coffee man" ) time! Gotta wait for the load balancer to be up and running in AWS machines.
 
