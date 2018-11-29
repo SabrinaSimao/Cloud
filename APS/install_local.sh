@@ -5,5 +5,7 @@ pip3 install requests
 pip3 install flask_restful
 pip3 install pprint
 
+ssh-keygen -f project_key -N sssss
+
 python3 load_balancer_launch.py
 python3 launch_instances.py $1

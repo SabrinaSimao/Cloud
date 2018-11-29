@@ -12,6 +12,17 @@ try:
 		r = requests.get(server)
 		print(r.text)
 
+
+	elif (sys.argv[1]) == "lotery":
+		r = requests.get(server)
+		print(r.text)
+
+
+	elif (sys.argv[1]) == "both":
+		r = requests.get(server)
+		print(r.text)
+
+
 	elif ((sys.argv[1]) == "help" or (sys.argv[1]) == "h"):
 		print(
 		"""

@@ -4,7 +4,7 @@ import sys
 
 size = int(sys.argv[1])
 #My public key
-pub_key = open("./useless/Sa_Key.pub", "r")
+pub_key = open("./project_key.pub", "r")
 
 #Client
 client = boto3.client('ec2')

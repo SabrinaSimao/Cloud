@@ -33,7 +33,7 @@ global group_name
 group_name = 'APS'
 
 #My public key
-pub_key = open("./useless/Sa_Key.pub", "r")
+pub_key = open("./project_key.pub", "r")
 
 ap.create_keypair(client, pub_key, key_name)
 ap.create_security_group(client, group_name)

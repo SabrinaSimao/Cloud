@@ -43,6 +43,8 @@ Fortune cookie generator: ask and shall receive! A fortune cookie message with a
 
 clone this git
 
+cd Cloud/APS/
+
 run installer script
 
 `chmod +x install_local.sh`
@@ -54,7 +56,9 @@ run installer script
 
 login to load balancer: you will need the Public DNS from Ec2 dashboard
 
-`ssh -i useless/Sa_Key ubuntu@PUBLIC_DNS`
+Note that project_key will be created inside the APS folder
+
+`ssh -i project_key ubuntu@PUBLIC_DNS`
 
 Once inside the load balancer instance, type
 
