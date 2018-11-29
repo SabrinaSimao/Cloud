@@ -1,2 +1,69 @@
-# Cloud
-Repository for Cloud Discipline at Insper
+# Disciplina de Cloud - Insper 2018.2
+
+## Projeto de Cloud
+
+Diretrizes do projeto:
+
+• O projeto é estritamente individual.
+
+• Cada aluno deverá implementar um microserviço que:
+
+    – Seja distribuído. Pode Utilizar uma infraestrutura de Cloud pública e/ou privada.
+
+    – Seja elástico. Ter a capacidade de criar e destruir instâncias de forma assíncrona.
+
+    – Implemente uma API REST.
+
+• O aluno terá livre escolha sobre as funcionalidades propostas.
+
+• Implementar uma aplicação cliente para consumir o serviço via API.
+
+• Tem que ser migrável para outra nuvem (Não pode usar soluções proprietárias – lock-in).
+
+• Utilizar uma linguagem de programação de livre escolha, embora seja sugerido usar uma que tenha
+bibliotecas para manipulação de Cloud prontas.
+
+• Possuir um script de implantação do projeto (charm, image ou script)
+
+
+Simple application:
+
+Fortune cookie generator: ask and shall receive! A fortune cookie message with a lotery number
+
+• Output example
+
+    Propositalmente ame o Raul   
+    Seu Numero da loteria é:[9, 17, 38, 46, 53, 59]
+
+## Installation Guide
+
+### DISCLAIMER: 
+
+### *always have your AWS credentials at hand, we will never ask for you to give us any private/public key or credential. Never show your acess key to anyone*
+
+clone this git
+
+run installer script
+
+`chmod +x install_local.sh`
+
+`./install_local <number of web servers running>`
+
+
+![alt text](https://github.com/SabrinaSimao/Cloud/blob/master/img/coffee.png "Go drink some coffee man" ) time! Gotta wait for the load balancer to be up and running in AWS machines.
+
+login to load balancer: you will need the Public DNS from Ec2 dashboard
+
+`ssh -i useless/Sa_Key ubuntu@PUBLIC_DNS`
+
+Once inside the load balancer instance, type
+
+`aws configure`
+
+setup internally your AWS credentials (which will be secured on their cloud)
+
+then run
+
+`python3 load_balancer.py`
+
+done!
