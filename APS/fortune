@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+
+import json
+import sys
+import requests
+import pprint
+
+load_balancer_ip='100.26.60.24'
+server='http://'+ load_balancer_ip +':5000/fortune/'
+try:
+	if (sys.argv[1]) == "cookie":
+		r = requests.get(server)
+		print(r.text)
+
+	elif ((sys.argv[1]) == "help" or (sys.argv[1]) == "h"):
+		print(
+		"""
+		type -help for help
+		$ cookie : this argument will generate a fortune cookie
+		$ lotery : this argument will generate a lotery number
+		$ both   : get a pair cookie + lotery number
+		-cookie will generate a 
+		"FORTUNE COOKIE generator"
+		""")
+	else:
+		print(
+		"""
+		type -help for help
+		$ cookie : this argument will generate a fortune cookie
+		$ lotery : this argument will generate a lotery number
+		$ both   : get a pair cookie + lotery number
+		-cookie will generate a 
+		"FORTUNE COOKIE generator"
+		""")
+except:
+	print(
+		"""
+		"Ok something broke my bad (or not)"
+		""")
