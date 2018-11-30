@@ -22,7 +22,7 @@ def loop():
 	while True:
 		healthcheck()
 		print("ping...\n")
-		time.sleep(50)
+		time.sleep(30)
 		
 
 
@@ -103,9 +103,10 @@ def healthcheck():
 	global key_name
 	global group_name
 
-
+	#just one instance at a time, so it doesnt overload anything
 	if how_many < size:
 		how_many += 1
+		print("\nYou have less instances then you should..... Lets create another one\n")
 		ap.create_instance(ec2, key_name, group_name)
 		print("\nHow many instances are OK: {0}".format(how_many))
 
@@ -125,8 +126,10 @@ def healthcheck():
 				print("\nEverything OK :) \n")
 				public_ips[key] = [value[0], 1, value[2]]
 			else:
+				#you should never enter here
 				print("\nJUMPING OUT SOMETHING BROKE\n")
 				public_ips[key] = [value[0], 0, value[2]]
+				break
 		except:
 				print("\nTimeout is true, instance is dead.\n")
 				public_ips[key] = [value[0], 0, value[2]]
@@ -153,7 +156,7 @@ def healthcheck():
 
 	public_ips = ap.make_dic_of_pub_ips_filtered(client, running_instance)
 	how_many = len(public_ips)
-	time.sleep(30)
+	time.sleep(15)
 
 if __name__ == '__main__':
 	t = Thread(target=loop)

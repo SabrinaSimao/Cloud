@@ -78,7 +78,6 @@ def make_dic_of_pub_ips_filtered(client, inside):
 				public_ip = tmp['PublicIpAddress']
 				InstanceId = tmp['InstanceId']
 				Time = tmp['LaunchTime']
-				print("\nDATE IS: {0}".format(Time))
 				public_ips[InstanceId] = [public_ip, 1, Time]
 				print(InstanceId)
 			except IndexError:
