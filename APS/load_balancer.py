@@ -18,7 +18,7 @@ how_many = size
 def loop():
 	while True:
 		healthcheck()
-		
+		time.sleep(50)
 		print("ping...\n")
 
 
