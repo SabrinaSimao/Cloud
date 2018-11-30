@@ -68,6 +68,7 @@ Once inside the load balancer instance, type
 setup internally your AWS credentials (which will be secured on their cloud)
 
 then run
+`cd Cloud/APS/`
 
 `python3 load_balancer.py <number of web servers running>`
 
