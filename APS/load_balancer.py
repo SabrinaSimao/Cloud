@@ -26,16 +26,16 @@ def loop():
 ##END THREAD##
 	
 #Client
-global client
+
 client = boto3.client('ec2')
 
 #Service
-global ec2
+
 ec2 = boto3.resource('ec2')
 
-global key_name
+
 key_name = 'Sa_Key'
-global group_name
+
 group_name = 'APS'
 
 #My public key
@@ -48,8 +48,7 @@ ap.create_security_group(client, group_name)
 
 
 inside = ap.describe_instance(client)
-
-global public_ips 
+ 
 
 public_ips = ap.make_dic_of_pub_ips_filtered(client, inside)
 
@@ -94,8 +93,13 @@ def catch_all(path):
 
 def healthcheck():
 	global how_many
-	#refactor dic of public ips
+	global public_ips
+	global ec2
+	global client
+	global key_name
+	global group_name
 
+	
 	if how_many < size:
 		how_many += 1
 		ap.create_instance(ec2, key_name, group_name)
