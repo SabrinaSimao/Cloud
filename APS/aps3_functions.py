@@ -77,7 +77,9 @@ def make_dic_of_pub_ips_filtered(client, inside):
 			try:
 				public_ip = tmp['PublicIpAddress']
 				InstanceId = tmp['InstanceId']
-				public_ips[InstanceId] = [public_ip, 2]
+				Time = tmp['LaunchTime']
+				print("\nDATE IS: {0}".format(Time))
+				public_ips[InstanceId] = [public_ip, 1]
 				print(InstanceId)
 			except IndexError:
 				print("\nNo Instance with this tag is running. It may have terminated\n")

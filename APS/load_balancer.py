@@ -8,6 +8,7 @@ import time
 import aps3_functions as ap
 from threading import Thread, Timer
 import sys
+import datetime
 
 global size
 size = int(sys.argv[1])
@@ -110,7 +111,7 @@ def healthcheck():
 		
 		print ("Waiting healthcheck request from instance {0}".format(key))
 		print("\n Ip is: {0}".format(str(value[0])))
-
+		print(datetime.datetime.now())
 		try:
 			r = requests.get('http://' +str(value[0])+':5000/healthcheck', timeout=3.0)   ##TIME OUT##
 			print ("Finishing healthcheck request from instance {0}".format(key))
@@ -119,10 +120,10 @@ def healthcheck():
 				public_ips[key] = [value[0], 1]
 			else:
 				print("\nJUMPING OUT SOMETHING BROKE\n")
-				public_ips[key] = [value[0], value[1]-1]
+				public_ips[key] = [value[0], 0]
 		except:
 				print("\nTimeout is true, instance is dead.\n")
-				public_ips[key] = [value[0], value[1]-1]
+				public_ips[key] = [value[0], 0]
 				print(key)
 	
 	for key, value in public_ips.items():
