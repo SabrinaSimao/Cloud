@@ -76,8 +76,8 @@ def make_dic_of_pub_ips_filtered(client, inside):
 		print("\nSTATE OF INSTANCE: {0}".format(status))
 		if status['Name'] == 'running':
 			try:
-				public_ip = instance_dic['Instances'][0]['PublicIpAdress']
-				InstanceId = instance_dic['Instances'][0]['InstanceId']
+				public_ip = tmp['PublicIpAdress']
+				InstanceId = tmp['InstanceId']
 				public_ips[InstanceId] = [public_ip, 1]
 				print(InstanceId)
 			except IndexError:
