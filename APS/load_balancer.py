@@ -62,34 +62,12 @@ app = Flask(__name__)
 @app.route('/<path:path>', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def catch_all(path):
     
-
-	if request.method == 'POST':
-		print("\nMethod is POST\n")
-		instance_id, server_ip = random.choice(list(public_ips.items()))
-		value = json.loads(request.data.decode("utf-8"))
-		r = requests.post('http://' +str(server_ip[0])+':5000/' + path, json = value)
-		return jsonify({"status": "OK","data": r.text})
-
-	elif request.method == 'GET':
+	if request.method == 'GET':
 		print("\nMethod is GET\n")
 		print("\nPATH IS {0}\n".format(path))
 		instance_id, server_ip = random.choice(list(public_ips.items()))
 		r = requests.get('http://' +str(server_ip[0])+':5000/' + path)
 		return jsonify({"status": "OK","data": r.text}, )
-
-	elif request.method =='DELETE':
-		print("\nMethod is DELETE\n")
-		instance_id, server_ip = random.choice(list(public_ips.items()))
-		value = json.loads(request.data.decode("utf-8"))
-		r = requests.delete('http://' +str(server_ip[0])+':5000/' + path, json = value)
-		return jsonify({"status": "OK","data": r.text})
-
-	elif request.method =='PUT':
-		print("\nMethod is PUT\n")
-		instance_id, server_ip = random.choice(list(public_ips.items()))
-		value = json.loads(request.data.decode("utf-8"))
-		r = requests.put('http://' +str(server_ip[0])+':5000/' + path , json = value)
-		return jsonify({"status": "OK","data": r.text})
 
 	else:
 		#page_not_found(error)
