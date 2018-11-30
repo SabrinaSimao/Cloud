@@ -118,10 +118,6 @@ except:
 	print("\nCan't Create Security Group, already exists\n")
 
 
-#print('\nSecurity Groups: \n')
-#pprint.pprint(client.describe_security_groups())
-
-
 ##USER DATA##
 user_data_script = """#!/bin/bash
 sudo apt update -y
@@ -150,17 +146,6 @@ tag_node = [
 		    },
 		]
 
-tag_load = [
-		    {
-		        'ResourceType': 'instance',
-		        'Tags': [
-		            {
-		                'Key': 'Owner',
-		                'Value': 'LoadBalancer'
-		            },
-		        ]
-		    },
-		]
 
 def launch_instance(ec2, user_data_script, Key_Name, group_name, tag):
 	print("\nLaunching Instance: \n")

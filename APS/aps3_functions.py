@@ -172,8 +172,8 @@ def create_instance(ec2, key_name, group_name):
 	cd home/ubuntu/
 	git clone https://github.com/SabrinaSimao/Cloud.git
 	cd Cloud/APS/
-	chmod +x tarefa
-	python3 aps1.py
+	chmod +x fortune
+	python3 fortune.py
 	"""
 
 	print("\nLaunching Instance: \n")

@@ -10,7 +10,7 @@ from threading import Thread, Timer
 import sys
 from datetime import datetime, timedelta, timezone
 
-delta = timedelta( seconds=400)
+delta = timedelta(seconds=400)
 
 global size
 size = int(sys.argv[1])
