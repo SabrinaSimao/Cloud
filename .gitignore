@@ -1,0 +1,2 @@
+#never commit a private key
+*.pem
