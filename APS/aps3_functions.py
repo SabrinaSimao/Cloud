@@ -75,6 +75,7 @@ def make_dic_of_pub_ips_filtered(client, inside):
 		status = tmp['State']
 		print("\nSTATE OF INSTANCE: {0}".format(status))
 		if status['Name'] == 'running':
+			print(tmp)
 			try:
 				public_ip = tmp['PublicIpAdress']
 				InstanceId = tmp['InstanceId']
