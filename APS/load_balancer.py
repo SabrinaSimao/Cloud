@@ -58,8 +58,8 @@ public_ips = ap.make_dic_of_pub_ips_filtered(client, inside)
 
 app = Flask(__name__)
 
-@app.route('/', defaults={'path': ''}, methods=['GET', 'POST', 'PUT', 'DELETE'])
-@app.route('/<path:path>', methods=['GET', 'POST', 'PUT', 'DELETE'])
+@app.route('/', defaults={'path': ''}, methods=['GET'])
+@app.route('/<path:path>', methods=['GET'])
 def catch_all(path):
     
 	if request.method == 'GET':
