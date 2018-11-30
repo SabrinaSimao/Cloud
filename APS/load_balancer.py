@@ -8,7 +8,7 @@ import time
 import aps3_functions as ap
 from threading import Thread, Timer
 import sys
-from datetime import time, datetime, timedelta
+from datetime import time, datetime, timedelta, timezone
 
 delta = timedelta( seconds=300)
 
@@ -113,7 +113,7 @@ def healthcheck():
 		
 		print ("Waiting healthcheck request from instance {0}".format(key))
 		print("\n Ip is: {0}".format(str(value[0])))
-		Now = datetime.utcnow()
+		Now = datetime.now(timezone.utc)
 		print((Now - value[2]))
 		if ((Now - value[2]) < delta):
 			print("TOO SOON EXECUTUS\n")
