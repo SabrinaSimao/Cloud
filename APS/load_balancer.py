@@ -95,9 +95,7 @@ def catch_all(path):
 def healthcheck():
 	global how_many
 	#refactor dic of public ips
-	running_instance = ap.describe_instance(client)
 
-	public_ips = ap.make_dic_of_pub_ips_filtered(client, running_instance)
 	if how_many < size:
 		how_many += 1
 		ap.create_instance(ec2, key_name, group_name)
@@ -139,6 +137,9 @@ def healthcheck():
 			print("Instance {0} is running smoothly".format(key))
 
 	print ("Finishing healthcheck..............")
+	running_instance = ap.describe_instance(client)
+
+	public_ips = ap.make_dic_of_pub_ips_filtered(client, running_instance)
 	time.sleep(30)
 
 if __name__ == '__main__':
