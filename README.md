@@ -28,11 +28,11 @@ bibliotecas para manipulação de Cloud prontas.
 
 Simple application:
 
-Fortune cookie generator: ask and shall receive! A fortune cookie message with a lotery number
+Fortune cookie generator: ask and shall receive! A fortune cookie message with a lottery number
 
 • Output example
 
-    Propositalmente ame o Raul   
+    Sempre ame o Raul   
     Your lottery numbers are: [9, 17, 38, 46, 53, 59]
 
 ## Installation Guide
