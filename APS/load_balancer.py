@@ -8,7 +8,7 @@ import time
 import aps3_functions as ap
 from threading import Thread, Timer
 import sys
-from datetime import time, datetime, timedelta, timezone
+from datetime import datetime, timedelta, timezone
 
 delta = timedelta( seconds=300)
 
