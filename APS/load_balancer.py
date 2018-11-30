@@ -8,7 +8,9 @@ import time
 import aps3_functions as ap
 from threading import Thread, Timer
 import sys
-import datetime
+from datetime import time, datetime, timedelta
+
+delta = timedelta( seconds=300)
 
 global size
 size = int(sys.argv[1])
@@ -111,24 +113,28 @@ def healthcheck():
 		
 		print ("Waiting healthcheck request from instance {0}".format(key))
 		print("\n Ip is: {0}".format(str(value[0])))
-		print(datetime.datetime.now())
+		Now = datetime.utcnow()
+		print((Now - value[2]))
+		if ((Now - value[2]) < delta):
+			print("TOO SOON EXECUTUS\n")
+			pass
 		try:
 			r = requests.get('http://' +str(value[0])+':5000/healthcheck', timeout=3.0)   ##TIME OUT##
 			print ("Finishing healthcheck request from instance {0}".format(key))
 			if (r.status_code == 200):
 				print("\nEverything OK :) \n")
-				public_ips[key] = [value[0], 1]
+				public_ips[key] = [value[0], 1, value[2]]
 			else:
 				print("\nJUMPING OUT SOMETHING BROKE\n")
-				public_ips[key] = [value[0], 0]
+				public_ips[key] = [value[0], 0, value[2]]
 		except:
 				print("\nTimeout is true, instance is dead.\n")
-				public_ips[key] = [value[0], 0]
+				public_ips[key] = [value[0], 0, value[2]]
 				print(key)
 	
 	for key, value in public_ips.items():
 		print(public_ips)
-		if (int(value[1]) <= 0):
+		if (int(value[1]) == 0):
 			how_many -= 1
 			print("\nHow many instances are OK: {0}".format(how_many))
 			try:
