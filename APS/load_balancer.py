@@ -97,7 +97,6 @@ def healthcheck():
 
 	#refactor dic of public ips
 	running_instance = ap.describe_instance(client)
-	running_inside = running_instance['Reservations']
 
 	public_ips = ap.make_dic_of_pub_ips_filtered(client, inside)
 	if how_many < size:
