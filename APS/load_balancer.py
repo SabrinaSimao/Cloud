@@ -18,8 +18,9 @@ how_many = size
 def loop():
 	while True:
 		healthcheck()
-		time.sleep(50)
 		print("ping...\n")
+		time.sleep(50)
+		
 
 
 
@@ -99,7 +100,7 @@ def healthcheck():
 	global key_name
 	global group_name
 
-	
+
 	if how_many < size:
 		how_many += 1
 		ap.create_instance(ec2, key_name, group_name)
@@ -118,15 +119,15 @@ def healthcheck():
 				public_ips[key] = [value[0], 1]
 			else:
 				print("\nJUMPING OUT SOMETHING BROKE\n")
-				public_ips[key] = [value[0], 0]
+				public_ips[key] = [value[0], value[1]-1]
 		except:
 				print("\nTimeout is true, instance is dead.\n")
-				public_ips[key] = [value[0], 0]
+				public_ips[key] = [value[0], value[1]-1]
 				print(key)
 	
 	for key, value in public_ips.items():
 		print(public_ips)
-		if (int(value[1]) == 0):
+		if (int(value[1]) <= 0):
 			how_many -= 1
 			print("\nHow many instances are OK: {0}".format(how_many))
 			try:
