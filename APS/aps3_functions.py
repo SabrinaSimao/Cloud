@@ -54,7 +54,7 @@ def make_dic_of_pub_ips(client, inside):
 	for i in range(len(inside)):
 		instance_dic = inside[i]
 		try:
-			public_ip = instance_dic['Instances'][0]['PublicIpAdress']
+			public_ip = instance_dic['Instances'][0]['PublicIpAddress']
 			InstanceId = instance_dic['Instances'][0]['InstanceId']
 			public_ips[InstanceId] = public_ip
 			print(InstanceId)
@@ -77,7 +77,7 @@ def make_dic_of_pub_ips_filtered(client, inside):
 		if status['Name'] == 'running':
 			print(tmp)
 			try:
-				public_ip = tmp['PublicIpAdress']
+				public_ip = tmp['PublicIpAddress']
 				InstanceId = tmp['InstanceId']
 				public_ips[InstanceId] = [public_ip, 1]
 				print(InstanceId)
