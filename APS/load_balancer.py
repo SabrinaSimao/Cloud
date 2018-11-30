@@ -118,22 +118,23 @@ def healthcheck():
 		print((Now - value[2]))
 		if ((Now - value[2]) < delta):
 			print("TOO SOON EXECUTUS\n")
-			pass
-		try:
-			r = requests.get('http://' +str(value[0])+':5000/healthcheck', timeout=3.0)   ##TIME OUT##
-			print ("Finishing healthcheck request from instance {0}".format(key))
-			if (r.status_code == 200):
-				print("\nEverything OK :) \n")
-				public_ips[key] = [value[0], 1, value[2]]
-			else:
-				#you should never enter here
-				print("\nJUMPING OUT SOMETHING BROKE\n")
-				public_ips[key] = [value[0], 0, value[2]]
-				break
-		except:
-				print("\nTimeout is true, instance is dead.\n")
-				public_ips[key] = [value[0], 0, value[2]]
-				print(key)
+			
+		else:
+			try:
+				r = requests.get('http://' +str(value[0])+':5000/healthcheck', timeout=3.0)   ##TIME OUT##
+				print ("Finishing healthcheck request from instance {0}".format(key))
+				if (r.status_code == 200):
+					print("\nEverything OK :) \n")
+					public_ips[key] = [value[0], 1, value[2]]
+				else:
+					#you should never enter here
+					print("\nJUMPING OUT SOMETHING BROKE\n")
+					public_ips[key] = [value[0], 0, value[2]]
+					break
+			except:
+					print("\nTimeout is true, instance is dead.\n")
+					public_ips[key] = [value[0], 0, value[2]]
+					print(key)
 	
 	for key, value in public_ips.items():
 		if (int(value[1]) == 0):
