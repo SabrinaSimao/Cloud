@@ -5,22 +5,24 @@ import sys
 import requests
 import pprint
 
-load_balancer_ip='100.26.60.24'
+load_balancer_ip='18.208.149.102'
 server='http://'+ load_balancer_ip +':5000/fortune/'
 try:
 	if (sys.argv[1]) == "cookie":
 		r = requests.get(server)
-		print(r.text)
+		new = r.json()
+		
+		print(new)
 
 
 	elif (sys.argv[1]) == "lotery":
 		r = requests.get(server)
-		print(r.text)
+		print(json.loads(r.text))
 
 
 	elif (sys.argv[1]) == "both":
 		r = requests.get(server)
-		print(r.text)
+		print(json.loads(r.text))
 
 
 	elif ((sys.argv[1]) == "help" or (sys.argv[1]) == "h"):

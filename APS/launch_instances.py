@@ -134,7 +134,7 @@ pip3 install pprint
 cd home/ubuntu/
 git clone https://github.com/SabrinaSimao/Cloud.git
 cd Cloud/APS/
-chmod +x tarefa
+chmod +x fortune
 python3 fortune.py
 """
 

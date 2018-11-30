@@ -55,7 +55,7 @@ passkey must be 5 or more characters
 
 ![alt text](https://github.com/SabrinaSimao/Cloud/blob/master/img/coffee.png "Go drink some coffee man" ) time! Gotta wait for the load balancer to be up and running in AWS machines.
 
-login to load balancer: you will need the Public DNS from Ec2 dashboard
+login to load balancer: you will need the Public DNS from Ec2 dashboard (look for TAG: LoadBalancer)
 
 Note that project_key will be created inside the APS folder
 

@@ -136,7 +136,6 @@ def healthcheck():
 				print(key)
 	
 	for key, value in public_ips.items():
-		print(public_ips)
 		if (int(value[1]) == 0):
 			how_many -= 1
 			print("\nHow many instances are OK: {0}".format(how_many))

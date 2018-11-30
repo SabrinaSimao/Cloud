@@ -7,10 +7,10 @@ app = Flask(__name__)
 api = Api(app)
 
 global list1
-list1 = ["Nunca", "Sempre", "As vezes", "Propositalmente", "Em nenhuma ocasiao", "Imediatamente", "Enfim", "Somente"]
+list1 = ["Nunca ", "Sempre ", "As vezes ", "Propositalmente ", "Em nenhuma ocasiao ", "Imediatamente ", "Enfim ", "Somente "]
 
 global list2
-list2 = ["crie", "ame", "escolha", "agradeça", "reflita", "observe", "possua", "finalize", "limite", "preveja"]
+list2 = ["crie ", "ame ", "escolha ", "agradeca ", "reflita ", "observe ", "possua ", "finalize ", "limite ", "preveja "]
 
 global list3
 list3 = ["medos", "o cinema", "Deus", "o Raul", "a arte", "o futuro", "amar", "muito dinheiro", "pouco dinheiro"] 
@@ -27,7 +27,7 @@ class Cookie(Resource):
 
 	def get(self):
 		sequencia = []
-		loto = "Seu Numero da loteria é:"
+		loto = "Your lotery number is :"
 		for x in range(6):
   			sequencia.append(random.randint(0, 60))
 		sequencia.sort()
@@ -36,8 +36,8 @@ class Cookie(Resource):
 		rand2 = random.choice(list2)
 		rand3 = random.choice(list3)
 		
-		texto = str(rand1) + str(rand2) + str(rand3) + "\n " + loto + str(sequencia)
-		return jsonify({'text': texto})
+		texto = str(rand1) + str(rand2) + str(rand3) + "   " + loto + str(sequencia)
+		return json.dumps({'text': texto})
 
 
 @app.route('/healthcheck', methods = ['GET'])
