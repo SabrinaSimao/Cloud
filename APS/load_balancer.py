@@ -10,7 +10,7 @@ from threading import Thread, Timer
 import sys
 from datetime import datetime, timedelta, timezone
 
-delta = timedelta( seconds=300)
+delta = timedelta( seconds=400)
 
 global size
 size = int(sys.argv[1])
@@ -152,6 +152,7 @@ def healthcheck():
 	running_instance = ap.describe_instance(client)
 
 	public_ips = ap.make_dic_of_pub_ips_filtered(client, running_instance)
+	how_many = len(public_ips)
 	time.sleep(30)
 
 if __name__ == '__main__':
