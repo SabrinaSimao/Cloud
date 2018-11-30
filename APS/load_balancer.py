@@ -154,7 +154,6 @@ def healthcheck():
 	running_instance = ap.describe_instance(client)
 
 	public_ips = ap.make_dic_of_pub_ips_filtered(client, running_instance)
-	how_many = len(public_ips)
 	time.sleep(15)
 
 if __name__ == '__main__':
