@@ -69,6 +69,6 @@ setup internally your AWS credentials (which will be secured on their cloud)
 
 then run
 
-`python3 load_balancer.py`
+`python3 load_balancer.py <number of web servers running>`
 
 done!

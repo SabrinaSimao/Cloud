@@ -7,6 +7,13 @@ import requests
 import time
 import aps3_functions as ap
 from threading import Thread, Timer
+import sys
+
+global size
+size = int(sys.argv[1])
+
+global how_many
+how_many = size
 
 ## BEGIN THREAD##
 def loop():
@@ -40,28 +47,12 @@ ap.create_security_group(client, group_name)
 
 ##Dictionary of Public IPs##
 
-instance = client.describe_instances(
-    Filters= [{'Name': 'tag:Owner', 'Values': ['Sabrina']}]
-)
-inside = instance['Reservations']
+
+inside = ap.describe_instance(client)
+
 global public_ips 
-public_ips= {}
 
-for i in range(len(inside)):
-	instance_dic = inside[i]
-	try:
-		public_ip = instance_dic['Instances'][0]['PublicIpAddress']
-		InstanceId = instance_dic['Instances'][0]['InstanceId']
-		public_ips[InstanceId] = [public_ip, 1]
-		#print(InstanceId)
-	except IndexError:
-		print("\nNo Instance with this tag is running. It may have terminated\n")
-	except KeyError:
-		print("An instance was found and it has no Public Ip Adress. It may have terminated")
-
-print("\nDic of Public Ips: \n")
-print(public_ips)
-
+public_ips = ap.make_dic_of_pub_ips_filtered(client, inside)
 
 app = Flask(__name__)
 
@@ -104,27 +95,20 @@ def catch_all(path):
 
 def healthcheck():
 
-	instance = client.describe_instances(
-    	Filters= [{'Name': 'tag:Owner', 'Values': ['Sabrina']}]
-		)
-	inside = instance['Reservations']
-	for i in range(len(inside)):
-		instance_dic = inside[i]
-		try:
-			public_ip = instance_dic['Instances'][0]['PublicIpAddress']
-			InstanceId = instance_dic['Instances'][0]['InstanceId']
-			public_ips[InstanceId] = [public_ip, 1]
-			
-		except IndexError:
-			print("\nNo Instance with this tag is running. It may have terminated\n")
-		except KeyError:
-			print("An instance was found and it has no Public Ip Adress. It may have terminated")
+	#refactor dic of public ips
+	running_instance = ap.describe_instance(client)
+	running_inside = running_instance['Reservations']
 
+	public_ips = ap.make_dic_of_pub_ips_filtered(client, inside)
+	if how_many < size:
+		how_many += 1
+		ap.create_instance(ec2, key_name, group_name)
+		print("\nHow many instances are OK: {0}".format(how_many))
 
 	for key, value in public_ips.items():
 		
 		print ("Waiting healthcheck request from instance {0}".format(key))
-		print(str(value[0]))
+		print("\n Ip is: {0}".format(str(value[0])))
 
 		try:
 			r = requests.get('http://' +str(value[0])+':5000/healthcheck', timeout=3.0)   ##TIME OUT##
@@ -141,20 +125,18 @@ def healthcheck():
 				print(key)
 	
 	time.sleep(30)
-	##end timeout
+
 	for key, value in public_ips.items():
 		print(public_ips)
 		if (int(value[1]) == 0):
+		how_many -= 1
+		print("\nHow many instances are OK: {0}".format(how_many))
 			try:
 				deleted = client.terminate_instances(
 				InstanceIds=[
 					str(key)
 				])
-				print("\n....Terminating Instance and Relaunching....\n")
-				new = ap.create_instance(ec2, key_name, group_name)
-				time.sleep(120)
-				#public_ips[str(new[0])] = ['fake_ip',6]
-
+				print("\n....Terminating Instance....\n")
 			except IndexError:
 				print("\nNo Instance with this tag is running. It may have terminated\n")
 		else:

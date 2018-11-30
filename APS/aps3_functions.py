@@ -65,7 +65,26 @@ def make_dic_of_pub_ips(client, inside):
 	print("\nDic of Public Ips: \n")
 	print(public_ips)
 	return public_ips
-	
+
+
+def make_dic_of_pub_ips_filtered(client, inside):
+	public_ips = {}
+	for i in range(len(inside)):
+		instance_dic = inside[i]
+		status = instance_dic['Instances'][0]['State']
+		if status['Name'] == 'running':
+			try:
+				public_ip = instance_dic['Instances'][0]['PublicIpAdress']
+				InstanceId = instance_dic['Instances'][0]['InstanceId']
+				public_ips[InstanceId] = [public_ip, 1]
+				print(InstanceId)
+			except IndexError:
+				print("\nNo Instance with this tag is running. It may have terminated\n")
+			except KeyError:
+				print("An instance was found and it has no Public Ip Adress. It may have terminated")
+	print("\nDic of Public Ips: \n")
+	print(public_ips)
+	return public_ips
 
 #print("\n.......Preparing to Launch New Instance.........\n")
 
