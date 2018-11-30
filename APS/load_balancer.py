@@ -97,7 +97,7 @@ def healthcheck():
 	#refactor dic of public ips
 	running_instance = ap.describe_instance(client)
 
-	public_ips = ap.make_dic_of_pub_ips_filtered(client, inside)
+	public_ips = ap.make_dic_of_pub_ips_filtered(client, running_instance)
 	if how_many < size:
 		how_many += 1
 		ap.create_instance(ec2, key_name, group_name)

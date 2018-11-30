@@ -71,7 +71,8 @@ def make_dic_of_pub_ips_filtered(client, inside):
 	public_ips = {}
 	for i in range(len(inside)):
 		instance_dic = inside[i]
-		status = instance_dic['Instances'][0]['State']
+		tmp = instance_dic['Instances'][0]
+		status = tmp['State']
 		if status['Name'] == 'running':
 			try:
 				public_ip = instance_dic['Instances'][0]['PublicIpAdress']
