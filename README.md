@@ -33,7 +33,7 @@ Fortune cookie generator: ask and shall receive! A fortune cookie message with a
 • Output example
 
     Propositalmente ame o Raul   
-    Seu Numero da loteria é:[9, 17, 38, 46, 53, 59]
+    Your lottery numbers are: [9, 17, 38, 46, 53, 59]
 
 ## Installation Guide
 
@@ -68,8 +68,23 @@ Once inside the load balancer instance, type
 setup internally your AWS credentials (which will be secured on their cloud)
 
 then run
+
 `cd Cloud/APS/`
 
 `python3 load_balancer.py <number of web servers running>`
 
 done!
+
+### Want to run the app?
+
+in your local machine (actually anywhere you have the repo)
+
+`chmod +x fortune`
+
+`./fortune <load_balancer_ip> <command> `
+
+commands are:
+
+    • cookie: generate a fortune cookie
+    • lottery: generate a lottery number
+    • both: generate both

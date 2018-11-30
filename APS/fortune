@@ -5,48 +5,64 @@ import sys
 import requests
 import pprint
 
-load_balancer_ip='18.208.149.102'
-server='http://'+ load_balancer_ip +':5000/fortune/'
-try:
-	if (sys.argv[1]) == "cookie":
-		r = requests.get(server)
-		new = r.json()
-		
-		print(new)
+if len(sys.argv) == 2:
+	load_balancer_ip = sys.argv[1]
+	server='http://'+ load_balancer_ip +':5000/fortune/'
+
+	try:
+		if (sys.argv[2]) == "cookie":
+			r = requests.get(server)
+			new = r.json()
+			
+			print(new)
 
 
-	elif (sys.argv[1]) == "lotery":
-		r = requests.get(server)
-		print(json.loads(r.text))
+		elif (sys.argv[2]) == "lottery":
+			r = requests.get(server)
+			new = r.json()
+			
+			print(new)
 
 
-	elif (sys.argv[1]) == "both":
-		r = requests.get(server)
-		print(json.loads(r.text))
+		elif (sys.argv[2]) == "both":
+			r = requests.get(server)
+			new = r.json()
+			
+			print(new)
 
 
-	elif ((sys.argv[1]) == "help" or (sys.argv[1]) == "h"):
+		elif ((sys.argv[1]) == "help" or (sys.argv[1]) == "h"):
+			print(
+			"""
+			type -help for help
+			help: fortune <ip-load-balancer> <comando> 
+			$ cookie : this argument will generate a fortune cookie
+			$ lottery : this argument will generate a lottery number
+			$ both   : get a pair cookie + lottery number
+			"FORTUNE COOKIE generator"
+			""")
+		else:
+			print(
+			"""
+			type -help for help
+			help: fortune <ip-load-balancer> <comando> 
+			$ cookie : this argument will generate a fortune cookie
+			$ lottery : this argument will generate a lottery number
+			$ both   : get a pair cookie + lottery number
+			"FORTUNE COOKIE generator"
+			""")
+	except:
 		print(
-		"""
-		type -help for help
-		$ cookie : this argument will generate a fortune cookie
-		$ lotery : this argument will generate a lotery number
-		$ both   : get a pair cookie + lotery number
-		-cookie will generate a 
-		"FORTUNE COOKIE generator"
-		""")
-	else:
-		print(
-		"""
-		type -help for help
-		$ cookie : this argument will generate a fortune cookie
-		$ lotery : this argument will generate a lotery number
-		$ both   : get a pair cookie + lotery number
-		-cookie will generate a 
-		"FORTUNE COOKIE generator"
-		""")
-except:
+			"""
+			"Ok something broke my bad (or not)"
+			""")
+else:
 	print(
-		"""
-		"Ok something broke my bad (or not)"
-		""")
+			"""
+			type -help for help
+			help: fortune <ip-load-balancer> <comando> 
+			$ cookie : this argument will generate a fortune cookie
+			$ lottery : this argument will generate a lottery number
+			$ both   : get a pair cookie + lottery number
+			"FORTUNE COOKIE generator"
+			""")

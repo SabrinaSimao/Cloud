@@ -27,7 +27,7 @@ class Cookie(Resource):
 
 	def get(self):
 		sequencia = []
-		loto = "Your lotery number is :"
+		loto = "Your lottery numbers are: "
 		for x in range(6):
   			sequencia.append(random.randint(0, 60))
 		sequencia.sort()
