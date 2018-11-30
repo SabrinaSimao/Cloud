@@ -18,7 +18,7 @@ how_many = size
 def loop():
 	while True:
 		healthcheck()
-		time.sleep(10)
+		
 		print("ping...\n")
 
 
@@ -122,8 +122,6 @@ def healthcheck():
 				public_ips[key] = [value[0], 0]
 				print(key)
 	
-	time.sleep(30)
-
 	for key, value in public_ips.items():
 		print(public_ips)
 		if (int(value[1]) == 0):
@@ -141,7 +139,7 @@ def healthcheck():
 			return("Instance {0} is running smoothly".format(key))
 
 	print ("Finishing healthcheck..............")
-
+	time.sleep(30)
 
 if __name__ == '__main__':
 	t = Thread(target=loop)
