@@ -138,7 +138,7 @@ def healthcheck():
 			except IndexError:
 				print("\nNo Instance with this tag is running. It may have terminated\n")
 		else:
-			return("Instance {0} is running smoothly".format(InstanceId))
+			return("Instance {0} is running smoothly".format(key))
 
 	print ("Finishing healthcheck..............")
 
