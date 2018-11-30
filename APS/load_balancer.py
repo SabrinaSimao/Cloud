@@ -12,7 +12,6 @@ import sys
 global size
 size = int(sys.argv[1])
 
-global how_many
 how_many = size
 
 ## BEGIN THREAD##
@@ -94,7 +93,7 @@ def catch_all(path):
 		return jsonify({"status": "NOT OK"})
 
 def healthcheck():
-
+	global how_many
 	#refactor dic of public ips
 	running_instance = ap.describe_instance(client)
 
