@@ -26,17 +26,17 @@ class Cookie(Resource):
 		return self.nome
 
 	def get(self):
-		sequencia = []
+		
 		loto = "Your lottery numbers are: "
-		for x in range(6):
-  			sequencia.append(random.randint(0, 60))
+		
+		sequencia = (random.sample(range(1,60), 6))
 		sequencia.sort()
 		
 		rand1 = random.choice(list1)
 		rand2 = random.choice(list2)
 		rand3 = random.choice(list3)
 		
-		texto = str(rand1) + str(rand2) + str(rand3) + "   " + loto + str(sequencia)
+		texto = str(rand1) + str(rand2) + str(rand3) + "\n" + loto + str(sequencia)
 		return json.dumps({'text': texto})
 
 
